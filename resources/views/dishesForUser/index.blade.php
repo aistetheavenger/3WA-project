@@ -2,6 +2,8 @@
 
 @section('content')
 
+@include('partials.errors', ['errors'=>$errors])
+
 
 {{--<div class="container ">--}}
 
@@ -23,7 +25,7 @@
 
         {!! Form::open(['route' => ['cart.update', $dish->id], 'method' => 'PUT']) !!}
         <div class="row text-center">
-            <div class="col-md-3 col-sm-6 col-xs-18 hero-feature ">
+            <div class="col-md-3 col-sm-6 col-xs-12 hero-feature ">
                 <div class="thumbnail ">
                     <img  class="img-responsive"  alt="dish image" src="{{$dish->getPhotoUrl() }}">
                     <div class="caption">

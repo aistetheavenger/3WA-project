@@ -3,18 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\TableReservation;  
+use Illuminate\Support\Facades\Auth;
 
-class TableReservation extends Controller
+class TableReservationController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $rez = TableReservation::all();
-        // return view('reservation.user.index', compact('rez'));
+        // $loged = $request->session()->get('loged', new Loged());
+        // $request->session()->put('loged', $loged);
+        // $request->session()->save();
+
+        $rez = TableReservation::all();
+
+        return view('reservations.user.reservation', compact('rez'));
     }
 
     /**
@@ -35,7 +42,16 @@ class TableReservation extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        if (Auth::guest()) {
+            return redirect(url('/register'));
+        } else 
+            return redirect('/reservation')
+                        ->with('message', 'Table booked succesfuly!');
+
+        $rez = TableReservation::all();
+
+        return view('reservations.user.index', compact('rez'));
     }
 
     /**

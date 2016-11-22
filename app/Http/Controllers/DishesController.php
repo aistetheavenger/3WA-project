@@ -103,6 +103,8 @@ class DishesController extends Controller
             $request->file('photo')->move($dir, $filename);
 
             $dish->update(['photo' => $filename]);
+
+            
         };
 
 //

@@ -42,6 +42,8 @@ Route::resource('cart', 'CartController');
 
 //Route::get('/dishes', 'DishesController@index');
 
+Route::resource('reservation', 'TableReservationController');
+
 
 
 

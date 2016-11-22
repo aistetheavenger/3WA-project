@@ -2,59 +2,71 @@
 
 @section('content')
 
+@include('partials.errors', ['errors'=>$errors])
+
 <div class="container">
     <div class="row">
-        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-2">
-            <div class="panel panel-default">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="panel panel-primary">
                 <div class="panel-heading">Book a table</div>
-                    <div class="panel-body">
-                    <form class="form-horizontal">
-
-
-                       {{-- {{Form::text(name), Auth::guest ?"": Auth::where()->name}} --}}
-
-                       {{--  {!! Form::model([
-                       'route' => 'dishes.store',
-                       'method' => 'POST',
-                       'files'=>true
-                       ]) !!}  --}}
+                <div class="panel-body">
 
 
 
+                 {{-- {{Form::text(name), Auth::guest ?"": Auth::where()->name}} --}}
 
+                 {!! Form::open([
+                 'route' => 'reservation.store',
+                 'method' => 'POST',
+                 'class'=> 'form-horizontal'
 
-                    <div class="form-group">
-                        {{ Form::label('name', 'Name:') }}
+                 ]) !!}
+
+                 <div class="form-group">
+                    {{ Form::label('name', 'Name:', ['class' => 'control-label col-md-4']) }}
+                    <div class="col-md-6">
                         {{ Form::text('name', null, ['class'=>'form-control','required' => 'required']) }}
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        {{ Form::label('phone', 'Phone:') }}
+
+                <div class="form-group">
+                    {{ Form::label('phone', 'Phone:', ['class' => 'control-label col-md-4']) }}
+                    <div class="col-md-6">
                         {{ Form::text('phone', null, ['class'=>'form-control','required' => 'required']) }}
                     </div>
+                </div>
 
-                    <div class="dropdown">
-                        {{ Form::label('persons', 'Table for:') }}
+                <div class="form-group">
+                    {{ Form::label('persons', 'Table for:', ['class' => 'control-label col-md-4']) }}
+                    <div class="col-md-6">
                         {{ Form::selectRange ( 'quantity', 1, 10, 1, ['class'=>'form-control']) }}
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        {{ Form::label('date', 'Date:') }}
+                <div class="form-group">
+                    {{ Form::label('date', 'Date:', ['class' => 'control-label col-md-4']) }}
+                    <div class="col-md-6">
                         {{ Form::date('date', null, ['class'=>'form-control','required' => 'required']) }}
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        {{ Form::label('time', 'Time:') }}
+                <div class="form-group">
+                    {{ Form::label('time', 'Time:', ['class' => 'control-label col-md-4']) }}
+                    <div class="col-md-6">
                         {{ Form::time('time', null, ['class'=>'form-control','required' => 'required']) }}
                     </div>
-
-                    {{ Form::submit('Book!', array('class' => 'btn btn-primary')) }}
-                    {{ Form::close() }}
-                    </form>
                 </div>
-            </div>
+                <div class="form-group">
+                    <div class=" col-md-6 col-md-offset-4">
+                        {{ Form::submit('Book!', array('class' => 'btn btn-primary form-control')) }}
+                    </div>
+                </div>
+                {{ Form::close() }}
+            </form>
         </div>
     </div>
+</div>
 </div>
 @endsection('content')
 
