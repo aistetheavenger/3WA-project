@@ -3,13 +3,18 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
-class Cart extends Model
+
+class Cart extends Collection
 {
-
    protected $items=[];
 
-    public function addItem($dishId $quantity){
+    /**
+     * @param $dishId
+     * @param $quantity
+     */
+    public function addItem($dishId, $quantity){
         if (array_key_exists($dishId, $this->items)){
             $this->items[$dishId] +=$quantity;
         }else{
@@ -17,7 +22,11 @@ class Cart extends Model
         }
     }
 
+    /**
+     * @return array
+     */
     public function getItems(){
         return $this->items;
+
     }
 }
