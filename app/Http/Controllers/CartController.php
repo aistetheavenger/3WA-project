@@ -23,6 +23,17 @@ class CartController extends Controller
         $ids = array_keys($quantities);
         $dishes = Dish::whereIn('id', $ids)->get();
 
+        $total = 0;
+        $totalSalePrice = 0;
+
+        foreach($dishes as $dish){
+            $total += $quantities[$dish->id] * $dish->price;
+            $totalSalePrice += $quantities[$dish->id] * $dish->getSalePrice();
+        }
+
+        $total = number_format($total, 2);
+        $totalSalePrice = number_format($totalSalePrice, 2);
+
         // suskaiciuoti totalus- each per dishus price*quantity
 
        // foreach ($dishes as $total){
@@ -44,7 +55,7 @@ class CartController extends Controller
         // -> totalus
         // ne all, o tuos kurie yra sesijoje
 
-        return view('dishesForUser.cart', compact('dishes', 'quantities'));
+        return view('dishesForUser.cart', compact('dishes', 'quantities', 'total', 'totalSalePrice'));
     }
 
    

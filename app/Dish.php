@@ -14,6 +14,11 @@ class Dish extends Model
 
         return asset('uploads/' . $this->photo);
     }
+
+    public function getSalePrice(){
+    	
+    	return $this->price * 1.21;
+    }
 }
 
 

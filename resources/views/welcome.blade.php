@@ -82,6 +82,8 @@
                 <div class="top-right links">
                     <a href="{{ url('/login') }}">Login</a>
                     <a href="{{ url('/register') }}">Register</a>
+                    <a href="">Bookings</a>
+                    <a href="{{ route('dishes.index') }}">Dishes</a>
                 </div>
             @endif
 

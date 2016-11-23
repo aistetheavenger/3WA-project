@@ -13,13 +13,11 @@
         </ul>
     </nav>
 
-
     {!! Form::open([
         'route' => 'dishes.store',
         'method' => 'POST',
         'files'=>true
     ]) !!}
-
 
     <div class="form-group">
         {{ Form::label('title', 'Title:') }}
@@ -41,9 +39,6 @@
         {{ Form::label('price', 'Price:') }}
         {{ Form::text('price', null, ['required' => 'required']) }}
     </div>
-
-
-
 
     {{ Form::submit('Create', array('class' => 'btn btn-primary')) }}
     {{ Form::close() }}
