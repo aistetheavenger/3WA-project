@@ -2,7 +2,7 @@
 
 @section('content')
 
-{{--{!! Form::open(['route' => ['cart.store', $dish->id], 'method' => 'POST']) !!} --}}
+
 
 <table class="table table-striped table-bordered">
    <thead>
@@ -40,10 +40,14 @@
     </div>
 </div>
 
-<!-- {!! Form::submit('BUY!', array('class' => 'btn btn-primary')) !!} -->
+    {!! Form::open([
+        'route' => 'orders.store',
+        'method' => 'POST'
+    ]) !!}
+{!! Form::submit('BUY!', array('class' => 'btn btn-primary')) !!}
 
 
-
+{!! Form::close() !!}
 
 
 @endsection

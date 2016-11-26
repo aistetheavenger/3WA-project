@@ -29,4 +29,27 @@ class Cart extends Collection
         return $this->items;
 
     }
+
+    public static function getCart(){
+        return session('cart', new Cart());
+    }
+
+    public static function getTotal(){
+        $quantities = static::getCart()->getItems();
+        $ids = array_keys($quantities);
+        $dishes = Dish::whereIn('id', $ids)->get();
+        $total = 0;
+
+        foreach($dishes as $dish){
+            $total += $quantities[$dish->id] * $dish->price;
+        }
+        $total = number_format($total, 2);
+        
+
+    }
+        public  function save(){
+        session()->put('cart', $this);
+        session()->save();
+        return $this;
+    }
 }

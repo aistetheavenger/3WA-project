@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Cart;
 use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -15,7 +18,8 @@ class OrderController extends Controller
     public function index()
     {
         $dishes = Order::all();
-        return view('dishesForUser.cart', compact('dishes'));
+        return view('dishesForUser.orders', compact('dishes'));
+        
     }
 
     /**
@@ -36,7 +40,20 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+        $cart = $request->session()->get('cart', new Cart());
+        $order= new Order();
+
+        $order->user_id = Auth::user()->id;
+
+
+        // $request->session()->put('cart', $cart);
+        // $request->session()->save();
+
+        // dd(new Order());
+
+        return view('dishesForUser.orders', compact('cart', 'order');
     }
 
     /**

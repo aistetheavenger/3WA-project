@@ -16,12 +16,18 @@ Auth::routes();
 
 
 Route::group(['middleware' => 'auth'], function () {
-
     Route::get('/home', 'HomeController@index');
-
     Route::resource('dishes', 'DishesController');
-
 });
+
+
+// Route::group(['middleware' => 'admin'], function () {
+//         Route::get('/admin', 'AdminController@index');
+//         Route::resource('admin/users', 'AdminUsersController', ['as' => 'admin']);
+//         Route::resource('admin/products', 'ProductController', ['as' => 'admin']);
+// }); pasikurti muddleware
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -43,6 +49,12 @@ Route::resource('cart', 'CartController');
 //Route::get('/dishes', 'DishesController@index');
 
 Route::resource('reservation', 'TableReservationController');
+
+Route::resource('orders', 'OrderController');
+
+
+
+
 
 
 

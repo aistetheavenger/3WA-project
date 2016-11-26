@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Orders;
 
 class User extends Authenticatable
 {
@@ -26,4 +27,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getFullName(){
+        return $this->name.' '. $this->surname;
+    }
+
+    public function orders(){
+        return $this->belongsToMany(App\Order::class);
+    }
+
 }

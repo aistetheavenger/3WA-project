@@ -13,7 +13,7 @@
 
 
 
-                 {{-- {{Form::text(name), Auth::guest ?"": Auth::where()->name}} --}}
+                
 
                  {!! Form::open([
                  'route' => 'reservation.store',
@@ -25,7 +25,7 @@
                  <div class="form-group">
                     {{ Form::label('name', 'Name:', ['class' => 'control-label col-md-4']) }}
                     <div class="col-md-6">
-                        {{ Form::text('name', null, ['class'=>'form-control','required' => 'required']) }}
+                        {{ Form::text('name', $userName, ['class'=>'form-control','required' => 'required']) }}
                     </div>
                 </div>
 
@@ -33,7 +33,7 @@
                 <div class="form-group">
                     {{ Form::label('phone', 'Phone:', ['class' => 'control-label col-md-4']) }}
                     <div class="col-md-6">
-                        {{ Form::text('phone', null, ['class'=>'form-control','required' => 'required']) }}
+                        {{ Form::text('phone', $userPhone, ['class'=>'form-control','required' => 'required']) }}
                     </div>
                 </div>
 

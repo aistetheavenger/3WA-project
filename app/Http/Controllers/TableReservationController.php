@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\TableReservation;  
+use App\User;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreBlogPost;
 
 class TableReservationController extends Controller
 {
@@ -15,13 +17,23 @@ class TableReservationController extends Controller
      */
     public function index(Request $request)
     {
-        // $loged = $request->session()->get('loged', new Loged());
-        // $request->session()->put('loged', $loged);
-        // $request->session()->save();
+
+        $userName=old('name');
+        $userPhone=old('phone');
+
+        $currentUser=Auth::user();
+        if ($currentUser){
+            if (!$userName){
+                $userName=$currentUser->getFullName();
+            }
+            if (!$userPhone){
+                $userPhone=$currentUser->phone;
+            }
+        }
 
         $rez = TableReservation::all();
-
-        return view('reservations.user.reservation', compact('rez'));
+        // dd($request);
+        return view('reservations.user.reservation', compact('rez', 'userName', 'userPhone'));
     }
 
     /**
@@ -40,8 +52,9 @@ class TableReservationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBlogPost $request)
     {
+
 
         if (Auth::guest()) {
             return redirect(url('/register'));
@@ -50,8 +63,14 @@ class TableReservationController extends Controller
                         ->with('message', 'Table booked succesfuly!');
 
         $rez = TableReservation::all();
+        // dd($rez);
 
-        return view('reservations.user.index', compact('rez'));
+        $this->validate($request, [
+            'name' => 'required|max:20',
+            'phone' => 'required',
+        ]);
+
+        return view('reservations.user.index', compact('rez', 'request'));
     }
 
     /**

@@ -121,13 +121,12 @@ class CartController extends Controller
 //        $item = $request->all();
         $dish = Dish::find($id);
         $quantity = (int)$request->get('quantity');
-
-        $cart = $request->session()->get('cart', new Cart());
+ $cart=Cart::getCart();
+        // $cart = $request->session()->get('cart', new Cart());
 
         $cart->addItem($dish->id, $quantity);
 
-        $request->session()->put('cart', $cart);
-        $request->session()->save();
+    $cart->save();
 
         return redirect()->route('cart.index');
     }
@@ -135,6 +134,9 @@ class CartController extends Controller
 
     public function destroy(Request $request, $id)
     {
+        // $cart=Cart::getCart();
+ 
+
         $cart = $request->session()->get('cart', new Cart());
         $cart->forget($id);
 
