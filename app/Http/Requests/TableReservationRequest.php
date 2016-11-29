@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreBlogPost extends FormRequest
+class TableReservationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class StoreBlogPost extends FormRequest
     {
         return [
             'name' => 'required|max:120',
-            // 'persons' => 'required',
+            'persons' => 'required',
             'date' => 'required|date_format:Y-m-d|after:today',
             'time' => 'required',
             'phone' => 'required|min:11|numeric',

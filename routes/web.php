@@ -52,8 +52,11 @@ Route::resource('reservation', 'TableReservationController');
 
 Route::resource('orders', 'OrderController');
 
+Route::get('/user/orders', 'OrderController@userIndex')->name('user.orders');
 
+Route::get('/booking', 'TableReservationController@index')->name('reservations.user.index');
 
+Route::get('/admin/reservation', 'TableReservationController@index')->name('reservations.admin.index');
 
 
 

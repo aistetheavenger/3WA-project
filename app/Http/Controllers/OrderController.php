@@ -17,9 +17,16 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $dishes = Order::all();
-        return view('dishesForUser.orders', compact('dishes'));
+        $orders = Order::all();
+
+        return view('dishesCRUD.orders', compact('orders'));
         
+    }
+
+    public function userIndex(){
+
+        $orders=Order::where('user_id', Auth::user()->id)->get();
+        return view('dishesForUser.orders', compact('orders'));
     }
 
     /**
@@ -40,20 +47,24 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-
-
-        $cart = $request->session()->get('cart', new Cart());
+        $cart =Cart::getCart();
         $order= new Order();
-
         $order->user_id = Auth::user()->id;
+        $order->total=$cart->getTotal();
+        $order->save();
 
+        foreach ($cart->getProducts() as $product) {
+            $order->dishes()->attach(
+                $product->id, 
+                [
+                    'price'=>$product->price, 
+                    'quantity'=>$cart->get($product->id)
+                ]
+            );
+        }
 
-        // $request->session()->put('cart', $cart);
-        // $request->session()->save();
-
-        // dd(new Order());
-
-        return view('dishesForUser.orders', compact('cart', 'order');
+        $cart->destroy();
+        return redirect()->route('user.orders');
     }
 
     /**
@@ -98,6 +109,7 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+       Order::destroy($id);
+        return redirect()->route('orders.index');
     }
 }

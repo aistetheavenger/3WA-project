@@ -18,47 +18,13 @@ class CartController extends Controller
     public function index(Request $request)
     {
 
-        $cart = $request->session()->get('cart', new Cart());
-        $quantities = $cart->getItems();
-        $ids = array_keys($quantities);
-        $dishes = Dish::whereIn('id', $ids)->get();
+        $cart = Cart::getCart();
 
-        $total = 0;
-        $totalSalePrice = 0;
 
-        foreach($dishes as $dish){
-            $total += $quantities[$dish->id] * $dish->price;
-            $totalSalePrice += $quantities[$dish->id] * $dish->getSalePrice();
-        }
-
-        $total = number_format($total, 2);
-        $totalSalePrice = number_format($totalSalePrice, 2);
-
-        // suskaiciuoti totalus- each per dishus price*quantity
-
-       // foreach ($dishes as $total){
-       //      $total-> $price->price
-       //     $total = $quantities*price
-       // }
-
-        //     foreach($dishes as $dish)
- 
-        // $quantities[$dish->id]
-        // $dish->price 
-        // $totals =($quantities[$dish->id]) * ($dish->price)
-
-        // endforeach
-
-        // return view
-        // -> dishes
-        // -> quantities
-        // -> totalus
-        // ne all, o tuos kurie yra sesijoje
-
-        return view('dishesForUser.cart', compact('dishes', 'quantities', 'total', 'totalSalePrice'));
+        return view('dishesForUser.cart', compact('cart'));
     }
 
-   
+
 
 
     public function create()
@@ -108,41 +74,17 @@ class CartController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
 
-//        $item = $request->all();
-        $dish = Dish::find($id);
-        $quantity = (int)$request->get('quantity');
- $cart=Cart::getCart();
-        // $cart = $request->session()->get('cart', new Cart());
-
-        $cart->addItem($dish->id, $quantity);
-
-    $cart->save();
-
+        Cart::getCart()->addItem($id, (int)$request->get('quantity'))->save();
         return redirect()->route('cart.index');
     }
 
-
     public function destroy(Request $request, $id)
     {
-        // $cart=Cart::getCart();
- 
-
-        $cart = $request->session()->get('cart', new Cart());
-        $cart->forget($id);
-
-        $request->session()->put('cart', $cart);
-        $request->session()->save();
-
+        Cart::getCart()->removeItem($id);
         return redirect()->route('cart.index');
 
     }

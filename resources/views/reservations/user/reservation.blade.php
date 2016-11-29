@@ -10,10 +10,11 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">Book a table</div>
                 <div class="panel-body">
-
-
-
-                
+                @if (session('message'))
+                    <div class="alert alert-success">
+                    {{session('message')}}
+                    </div>
+                @endif
 
                  {!! Form::open([
                  'route' => 'reservation.store',
@@ -40,7 +41,7 @@
                 <div class="form-group">
                     {{ Form::label('persons', 'Table for:', ['class' => 'control-label col-md-4']) }}
                     <div class="col-md-6">
-                        {{ Form::selectRange ( 'quantity', 1, 10, 1, ['class'=>'form-control']) }}
+                        {{ Form::selectRange ( 'persons', 1, 10, 1, ['class'=>'form-control']) }}
                     </div>
                 </div>
 

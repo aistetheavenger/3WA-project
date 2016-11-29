@@ -6,18 +6,23 @@ use Illuminate\Http\Request;
 use App\TableReservation;  
 use App\User;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\StoreBlogPost;
+use App\Http\Requests\TableReservationRequest;
 
 class TableReservationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
+        // if (Auth::guest()) {
+        //     return redirect(url('/register'));
+        // } 
+        // $rez = TableReservation::where('user_id', Auth::user()->id)->get();
 
+        $rez = TableReservation::all();
+        return view('reservations.admin.index', compact('rez'));
+    }
+
+    public function create()
+    {
         $userName=old('name');
         $userPhone=old('phone');
 
@@ -30,91 +35,49 @@ class TableReservationController extends Controller
                 $userPhone=$currentUser->phone;
             }
         }
-
-        $rez = TableReservation::all();
-        // dd($request);
-        return view('reservations.user.reservation', compact('rez', 'userName', 'userPhone'));
+        return view('reservations.user.reservation', compact('userName', 'userPhone'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreBlogPost $request)
+    public function store(TableReservationRequest $request)
     {
 
+        // if (Auth::guest()) {
+        //     return redirect(url('/register'));
+        // }  
 
-        if (Auth::guest()) {
-            return redirect(url('/register'));
-        } else 
-            return redirect('/reservation')
+        $rez=TableReservation::create($request->all());
+
+        return redirect()->route('reservation.create')
                         ->with('message', 'Table booked succesfuly!');
 
         $rez = TableReservation::all();
-        // dd($rez);
-
-        $this->validate($request, [
-            'name' => 'required|max:20',
-            'phone' => 'required',
-        ]);
 
         return view('reservations.user.index', compact('rez', 'request'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $rez=TableReservation::find($id);
+        return view('reservations.admin.edit', compact('rez'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(TableReservationRequest $request, $id)
     {
-        //
+        $rez=TableReservation::find($id);
+        $rez->update($request->all());
+        
+        return redirect()->route('reservation.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $rez=TableReservation::destroy($id);
+
+        return redirect()->route('reservation.index');
     }
 }

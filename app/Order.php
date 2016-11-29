@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $fillable = [
-        'id', 'user_id', 'totals'
+        'id', 'user_id', 'total'
     ];
 
         public function user()
@@ -17,7 +17,7 @@ class Order extends Model
 
         public function dishes()
     {
-        return $this->belongsToMany('App\Dish');
+        return $this->belongsToMany('App\Dish')->withPivot('id', 'price', 'quantity');
     }
 }
 

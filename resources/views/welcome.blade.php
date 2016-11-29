@@ -94,7 +94,7 @@
 
                 <div class="links">
                     <a href="/shopNow" class="btn btn-default">SHOP NOW</a>
-                    <a href="/reservation" class="btn btn-lg orangeBtn">BOOK A TABLE</a>
+                    <a href="{{route('reservation.create')}}" class="btn btn-lg orangeBtn">BOOK A TABLE</a>
                     <a href="/contacts" class="btn btn-default">CONTACTS</a>
                 </div>
             </div>

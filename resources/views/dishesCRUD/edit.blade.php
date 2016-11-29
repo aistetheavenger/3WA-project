@@ -3,14 +3,9 @@
 
 @section('content')
 
-<nav class="navbar navbar-inverse">
-    <ul class="nav navbar-nav">
-        <li class="btn btn-small btn-danger">Admin mode</li>
-        <li><a href="{{ URL::to('dishes') }}">View All Dishes</a></li>
-        <li><a href="{{ URL::to('dishes/create') }}">Create Dish</a>
-    </ul>
-</nav>
+@include('partials.admin_navbar')
 
+@include('partials.errors', ['errors'=>$errors])
 
 
 {!! Form::model($dishes, array('route' =>array ('dishes.update', $dishes->id),'method' => 'PUT', 'files'=>true)) !!}
