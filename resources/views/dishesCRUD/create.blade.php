@@ -5,7 +5,7 @@
 
 @include('partials.errors', ['errors'=>$errors])
 
-@include('partials.admin_navbar')
+
 
     {!! Form::open([
         'route' => 'dishes.store',

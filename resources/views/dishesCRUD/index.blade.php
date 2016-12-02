@@ -2,7 +2,7 @@
 
 @section('content')
 
-@include('partials.admin_navbar')
+
 
 <table class="table table-striped table-bordered">
     <thead>

@@ -6,6 +6,8 @@
         <li><a href="{{ URL::to('dishes/create') }}">Create Dish</a>
         <li><a href="{{ route('reservation.index') }}">Bookings</a>
         <li><a href="{{route('reservation.create')}}">Create Booking</a>
-        <li><a href="#">Users</a>
+        <li><a href="{{route('users.index')}}">Users</a>
+        <li><a href="{{ route('users.create') }}">Create Users</a>
+        <li><a href="{{ route('orders.index') }}">Orders history</a>
     </ul>
 </nav>

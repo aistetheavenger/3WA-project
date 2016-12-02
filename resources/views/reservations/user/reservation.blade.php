@@ -20,7 +20,6 @@
                  'route' => 'reservation.store',
                  'method' => 'POST',
                  'class'=> 'form-horizontal'
-
                  ]) !!}
 
                  <div class="form-group">

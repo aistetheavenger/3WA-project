@@ -3,7 +3,7 @@
 
 @section('content')
 
-@include('partials.admin_navbar')
+
 
 @include('partials.errors', ['errors'=>$errors])
 

@@ -45,8 +45,6 @@
             background: -moz-linear-gradient(bottom right, #9966ff, #66ffff);
             background: linear-gradient(to bottom right, #9966ff, #66ffff);
         }
-
-
     </style>
 </head>
 <body>
@@ -79,18 +77,20 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
+                            <li><a class="" href="/shopNow">SHOP NOW</a></li>
+                            <li><a class="" href="{{route('reservation.create')}}">BOOK A TABLE</a></li>
+                            <li><a class="" href="/contacts">CONTACTS</a></li>
                             <li><a href="{{ url('/login') }}">Login</a></li>
                             <li><a href="{{ url('/register') }}">Register</a></li>
+
                         @else
-                            <li>
-                                <a class="" href="/shopNow">SHOP NOW</a>
-                            </li>
-                                <li>
-                                <a class="" href="/reservation">BOOK A TABLE</a>
-                            </li>
-                                <li>
-                                <a class="" href="/contacts">CONTACTS</a>
-                            </li>
+
+                        @if (Auth::user()->isAdmin())
+                        @include('partials.admin_navbar')
+                        @endif
+                            <li><a class="" href="/shopNow">SHOP NOW</a></li>
+                            <li><a class="" href="{{route('reservation.create')}}">BOOK A TABLE</a></li>
+                            <li><a class="" href="/contacts">CONTACTS</a></li>
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -111,6 +111,8 @@
                                 </ul>
                             </li>
                         @endif
+
+
                     </ul>
                 </div>
             </div>

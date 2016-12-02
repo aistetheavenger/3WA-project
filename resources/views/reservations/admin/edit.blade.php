@@ -2,7 +2,7 @@
 
 @section('content')
 
-@include('partials.admin_navbar')
+
 @include('partials.errors', ['errors'=>$errors])
 
 {!! Form::model($rez, array('route' =>array ('reservation.update', $rez->id),'method' => 'PUT')) !!}

@@ -10,22 +10,12 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
 
         $cart = Cart::getCart();
-
-
         return view('dishesForUser.cart', compact('cart'));
     }
-
-
-
 
     public function create()
     {
@@ -33,42 +23,19 @@ class CartController extends Controller
         return view('dishesForUser.cart', compact('dishes'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-
-
         return redirect()->route('dishesForUser.cart');
-
-        // request produkto ID
-        // sesijoje reikia krepselio masyvo
-        // produkto ID -> krepselio sessijos masyvas
-
-        // redirect -> cart items list (cart@index)
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //

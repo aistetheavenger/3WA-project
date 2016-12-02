@@ -38,13 +38,12 @@
     </div>
 </div>
 
-{!! Form::open([
-    'route' => 'orders.store',
-    'method' => 'POST'
-    ]) !!}
-
 <div class="row">
     <div class="col-md-6 col-md-offset-6"> 
+        {!! Form::open([
+        'route' => 'orders.store',
+        'method' => 'POST'
+        ]) !!}
         <a href="/shopNow" class="btn btn-default" role="button"><- Back to dishes</a>
         {!! Form::submit('BUY! ->', array('class' => 'btn btn-primary')) !!}
         {!! Form::close() !!}

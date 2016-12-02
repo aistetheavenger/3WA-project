@@ -2,8 +2,6 @@
 
 @section('content')
 
-@include('partials.admin_navbar')
-
 <table class="table table-striped table-bordered">
     <tr>
         <th>Name</th>
@@ -14,7 +12,11 @@
     </tr>
     @foreach($orders as $order)
         <tr>
-            <td>{{ $order->user->getFullName() }}</td>  
+            <td>
+                @if($order->user)
+                    {{ $order->user->getFullName() }}
+                @endif
+            </td>  
             <td>{{ $order->total }}</td>    
             <td>{{ $order->id }}</td>
             <td>

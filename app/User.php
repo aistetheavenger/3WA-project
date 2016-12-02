@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'surname', 'phone', 'address', 'city', 'zip', 'country', 'birthdate',
+        'name', 'email', 'password', 'surname', 'phone', 'address', 'city', 'zip', 'country', 'birthdate', 'id', 'admin',
     ];
 
     /**
@@ -34,6 +34,10 @@ class User extends Authenticatable
 
     public function orders(){
         return $this->belongsToMany(App\Order::class);
+    }
+    public function isAdmin()
+    {
+    return $this->admin=='on'; // this looks for an admin column in your users table
     }
 
 }

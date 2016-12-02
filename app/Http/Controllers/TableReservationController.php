@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\TableReservationRequest;
 
+
 class TableReservationController extends Controller
 {
     public function index(Request $request)
@@ -50,9 +51,9 @@ class TableReservationController extends Controller
         return redirect()->route('reservation.create')
                         ->with('message', 'Table booked succesfuly!');
 
-        $rez = TableReservation::all();
+        // $rez = TableReservation::all();
 
-        return view('reservations.user.index', compact('rez', 'request'));
+        // return view('reservations.user.index', compact('rez', 'request'));
     }
 
     public function show($id)
