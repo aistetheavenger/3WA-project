@@ -11,14 +11,16 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index');
     Route::resource('dishes', 'DishesController');
+    Route::get('/profile', 'UsersController@profile')->name('users.profile');
+    Route::post('/profile', 'UsersController@profileUpdate')->name('users.profile.update');
 });
 
 Route::group(['middleware'=>['auth', 'admin']], function(){
 	Route::resource('/admin/dishes', 'AdminDishController');
 	Route::resource('/orders', 'OrdersController');
 	Route::resource('/reservation', 'TableReservationController');
-
-	return "this page requires that you be logged in and an Admin";
+	Route::resource('/users', 'UsersController');
+	
 
 
 });
@@ -32,7 +34,7 @@ Route::get('/reservation', function () {
     return view('/reservations/user/reservation');
 });
 
-Route::resource('/users', 'UsersController');
+
 
 
 Route::get('/shopNow', 'DishesController@user');

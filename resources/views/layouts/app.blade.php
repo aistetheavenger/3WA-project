@@ -98,10 +98,12 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ route('users.profile', Auth::user()->id) }}">User profile</a></li>
                                     <li>
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                            >Logout
+                                            >
+                                            Logout
                                         </a>
 
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\UserProfile;
 
 class UsersController extends Controller
 {
@@ -28,10 +29,6 @@ class UsersController extends Controller
             ->with('message', 'User created succesfuly!');
     }
 
-    public function show($id)
-    {
-        //
-    }
 
     public function edit($id)
     {
@@ -39,7 +36,13 @@ class UsersController extends Controller
         return view('dishesCRUD.usersedit', compact('users'));
     }
 
-    public function update(Request $request, $id)
+        public function profile()
+    {
+        $users = Auth::user();
+        return view('dishesCRUD.userprofile', compact('users'));
+    }
+
+    public function update(UserProfile $request, $id)
     {
         $users=User::find($id);
         $users->update($request->all());
@@ -47,6 +50,24 @@ class UsersController extends Controller
         return redirect()->route('users.index');
     }
 
+    public function profileUpdate(UserProfile $request)
+    {
+        $inputData=$request->all();
+        if (array_key_exists('password', $inputData)){
+            
+            if (!empty($inputData['password'])){
+                $inputData['password']=bcrypt($inputData['password']);
+
+            }else{
+                unset($inputData['password']);
+            }
+        }
+        $users=Auth::user();
+        $users->update($inputData);
+        
+        return redirect()->route('users.profile');
+    }
+    
 
     public function destroy($id)
     {

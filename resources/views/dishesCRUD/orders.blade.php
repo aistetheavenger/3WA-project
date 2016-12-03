@@ -5,6 +5,7 @@
 <table class="table table-striped table-bordered">
     <tr>
         <th>Name</th>
+        <th>Date</th>
         <th>Total</th>
         <th>Order id</th>
         <th>Products</th>
@@ -17,6 +18,7 @@
                     {{ $order->user->getFullName() }}
                 @endif
             </td>  
+            <td>{{ $order->created_at }}</td> 
             <td>{{ $order->total }}</td>    
             <td>{{ $order->id }}</td>
             <td>
