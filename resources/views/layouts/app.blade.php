@@ -45,6 +45,12 @@
             background: -moz-linear-gradient(bottom right, #9966ff, #66ffff);
             background: linear-gradient(to bottom right, #9966ff, #66ffff);
         }
+
+        .navbar-brand img {
+            max-height: 100px;
+            max-width: 100px;
+            margin-top: -5px;
+        }
     </style>
 </head>
 <body>
@@ -65,6 +71,7 @@
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('', 'Apple Forest') }}
                     </a>
+                    <a class="navbar-brand" href="{{ url('/') }}"><img src="{{$url = asset('/images/apple.png') }}"></a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -75,23 +82,34 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a class="" href="/shopNow">SHOP NOW</a></li>
-                            <li><a class="" href="{{route('reservation.create')}}">BOOK A TABLE</a></li>
-                            <li><a class="" href="/contacts">CONTACTS</a></li>
-                            <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Register</a></li>
 
-                        @else
+                        <li><a class="" href="/shopNow">SHOP NOW</a></li>
+                        <li><a class="" href="{{route('reservation.create')}}">BOOK A TABLE</a></li>
+                        <li><a class="btn btn-primary" href="{{route('cart.index') }}"> Cart: <span class="badge">{{$cartCount}}</span> item(s)</a></li>
 
-                        @if (Auth::user()->isAdmin())
-                        @include('partials.admin_navbar')
+                        @if (Auth::check())
+                            <li><a class="" href="{{route('orders.index')}}">ORDERS</a></li>
                         @endif
-                            <li><a class="" href="/shopNow">SHOP NOW</a></li>
-                            <li><a class="" href="{{route('reservation.create')}}">BOOK A TABLE</a></li>
-                            <li><a class="" href="/contacts">CONTACTS</a></li>
 
+                        <li><a class="" href="/contacts">CONTACTS</a></li>
+
+                        @if(Auth::guest())
+                                <li><a href="{{ url('/login') }}">Login</a></li>
+                                <li><a href="{{ url('/register') }}">Register</a></li>
+                        @endif
+
+                        @if (Auth::check() && Auth::user()->isAdmin())
+                          <!--   <li class="btn btn-small btn-danger">Admin mode</li> -->
+                            <li><a href="{{ URL::to('dishes') }}">View All Dishes</a></li>
+                            <li><a href="{{ URL::to('dishes/create') }}">Create Dish</a>
+                            <li><a href="{{ route('reservation.index') }}">Bookings</a>
+                            <li><a href="{{route('users.index')}}">Users</a>
+                            <li><a href="{{ route('users.create') }}">Create Users</a>
+                        @endif
+                    
+
+
+                        @if(Auth::check())
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -112,8 +130,7 @@
                                     </li>
                                 </ul>
                             </li>
-                        @endif
-
+                            @endif
 
                     </ul>
                 </div>

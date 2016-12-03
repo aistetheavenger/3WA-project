@@ -5,6 +5,7 @@
 <table class="table table-striped table-bordered">
     <tr>
         <th>Name</th>
+        <th>User ID</th>
         <th>Date</th>
         <th>Total</th>
         <th>Order id</th>
@@ -17,7 +18,8 @@
                 @if($order->user)
                     {{ $order->user->getFullName() }}
                 @endif
-            </td>  
+            </td> 
+            <td>{{ $order->user_id }}</td>  
             <td>{{ $order->created_at }}</td> 
             <td>{{ $order->total }}</td>    
             <td>{{ $order->id }}</td>
@@ -41,6 +43,12 @@
         </tr>
     @endforeach
 </table>
+<div class="row">
+    <div class="col-md-3 col-md-offset-4 btn btn-info">
+        Totals: {{ $order->sum('total')}}
+    </div>
+</div>
+
 
 @endsection
 

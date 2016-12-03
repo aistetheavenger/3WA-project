@@ -10,10 +10,20 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
+
+    function __construct(){
+        $this->middleware('auth')->only('store');
+    }
     public function index()
     {
-        $orders = Order::all();
-        return view('dishesCRUD.orders', compact('orders'));
+        // tik adminas gali matyti
+        if (Auth::user()->admin){
+            $orders = Order::all();
+            return view('dishesCRUD.orders', compact('orders'));
+        }else{
+            $orders=Order::where('user_id', Auth::user()->id)->get();
+            return view('dishesForUser.orders', compact('orders')); 
+        }
     }
 
     public function userIndex(){
@@ -29,7 +39,13 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-        $cart =Cart::getCart();
+        $cart = Cart::getCart();
+
+        if (!count($cart->getProducts())) {
+            return redirect()->route('orders.index')
+                ->with('message', 'Your cart is empty, add items!');
+        }
+
         $order= new Order();
         $order->user_id = Auth::user()->id;
         $order->total=$cart->getTotal();
@@ -45,6 +61,7 @@ class OrderController extends Controller
             );
         }
         $cart->destroy();
+ 
         return redirect()->route('user.orders');
     }
 

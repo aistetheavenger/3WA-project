@@ -16,7 +16,8 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(['middleware'=>['auth', 'admin']], function(){
-	Route::resource('/admin/dishes', 'AdminDishController');
+	Route::resource('dishes', 'DishesController');
+	// Route::resource('/admin/dishes', 'DishController');
 	Route::resource('/orders', 'OrdersController');
 	Route::resource('/reservation', 'TableReservationController');
 	Route::resource('/users', 'UsersController');

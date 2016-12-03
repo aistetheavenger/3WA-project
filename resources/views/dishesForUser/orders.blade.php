@@ -2,6 +2,12 @@
 
 @section('content')
 
+@if (session('message'))
+    <div class="alert alert-warning">
+        {{session('message')}}  
+    </div>
+@endif
+
 <div class="row">
     <div class="col-md-12"> 
         <table class="table table-hover">
@@ -37,6 +43,7 @@
         </table>
     </div>
 </div>
+
 
 @endsection
 
