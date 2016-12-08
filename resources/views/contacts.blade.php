@@ -1,39 +1,53 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row-fluid">
-            <div class="span8">
-                <iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.co.uk/maps?f=q&source=s_q&hl=en&geocode=&q=10+Rue+de+Rome&sll=48.874650,2.325336&ie=UTF8&hq=&hnear=10+RUE+DE+ROME,+75008,+FRANCE&t=m&z=17&ll=48.875350,2.325336&output=embed"></iframe>
-            </div>
+<style>
+  #map {
+    width: 100%;
+    height: 400px;
+  }
+</style>
 
-            <div class="span4">
-                <h2>Snail mail</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 panel-body text-justify">
+            <div class="text-center header">Contact Us</div>
+                <p>When the evening comes, restaurant Apple Forest fills with refined tastes and aromas and warm conversations. This is a place for those who look for inspiration in novelties, improvisation and pleasure.</p>
+
+                <p>An exceptional, small restaurant does have a reason for being here, in Gedimino pr.50. Why? Visit us and we will tell you the magic story of this place.</p>
+
+            <div class="panel-body text-center">
+                <strong>Apple Forest</strong>
                 <address>
-                    <strong>Hythe Window Cleaning</strong><br>
-                    15 Springfield Way<br>
-                    Hythe<br>
-                    Kent<br>
-                    United Kingdon<br>
-                    CT21 5SH<br>
-                    <abbr title="Phone">P:</abbr> 01234 567 890
+                    <p>Gedimino pr.50, 03151, Vilnius</p>
+                    <p>Lithuania</p>
+                    <p class="tel">+44 (0)XXXX XXXXXX</p>
                 </address>
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                    <div id="map" class="map">
+            </div>
+        </div>
     </div>
+</div>
 
+<script>
+    function initMap() {
+        var uluru = {lat: 48.874650, lng: 2.325336};
+        var map = new google.maps.Map(document.getElementById('map'), {
 
-    <address>
-        <strong>Twitter, Inc.</strong><br>
-        1355 Market Street, Suite 900<br>
-        San Francisco, CA 94103<br>
-        <abbr title="Phone">P:</abbr> (123) 456-7890
-    </address>
-
-    <address>
-        <strong>Full Name</strong><br>
-        <a href="mailto:#">first.last@example.com</a>
-    </address>
-
-
+        zoom: 4,
+        center: uluru
+        });
+        var marker = new google.maps.Marker({
+        position: uluru,
+        map: map
+        });
+    }
+</script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLKwNlkMTvs-P1vOVN-xU5AeykrG0RyWU&callback=initMap">
+</script>
 @endsection

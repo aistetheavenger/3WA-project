@@ -13,17 +13,23 @@
 
         <!-- Styles -->
         <style>
-            html, body {
-                background: #cc99ff;
+            html, body,{
+ /*               background: #cc99ff;
                 background: -webkit-linear-gradient(left top, #9966ff, #66ffff);
                 background: -o-linear-gradient(bottom right, #9966ff, #66ffff);
                 background: -moz-linear-gradient(bottom right, #9966ff, #66ffff);
-                background: linear-gradient(to bottom right, #9966ff, #66ffff);
+                background: linear-gradient(to bottom right, #9966ff, #66ffff);*/
                 color: white;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;
+
+            }
+
+            header {
+                background-color: rgba(0, 0, 0, 0.4);
+                z-index: -100;
             }
 
             .full-height {
@@ -52,6 +58,7 @@
 
             .title {
                 font-size: 84px;
+                color: white;
             }
 
             .links > a {
@@ -74,36 +81,58 @@
                 background: black;
 
             }
+
+            .bgvid { 
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                min-width: 100%;
+                min-height: 100%;
+                width: auto;
+                height: auto;
+                z-index: -200;
+                -ms-transform: translateX(-50%) translateY(-50%);
+                -moz-transform: translateX(-50%) translateY(-50%);
+                -webkit-transform: translateX(-50%) translateY(-50%);
+                transform: translateX(-50%) translateY(-50%);
+                background-size: cover; 
+            }
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <header>
+        <video playsinline autoplay muted loop class="bgvid" >
+            <source src="{{$url = asset('/images/video2.mp4') }}" type="video/mp4">
+        </video>
 
-            @if (Auth::check())
-                    @if (Auth::user()->isAdmin())
-                        @include('partials.admin_navbar')
-                    @endif 
-                @else
-                    @if (Route::has('login'))
-                        <div class="top-right links">
-                            <a href="{{ url('/login') }}">Login</a>
-                            <a href="{{ url('/register') }}">Register</a>
-                        </div>
+            <div class="flex-center position-ref full-height">
+
+                @if (Auth::check())
+                        @if (Auth::user()->isAdmin())
+                            @include('partials.admin_navbar')
+                        @endif 
+                    @else
+                        @if (Route::has('login'))
+                            <div class="top-right links">
+                                <a href="{{ url('/login') }}">Login</a>
+                                <a href="{{ url('/register') }}">Register</a>
+                            </div>
+                    @endif
                 @endif
-            @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                   Apple Forest
-                </div>
+                <div class="content">
+                    <div class="title m-b-md">
+                       Apple Forest
+                    </div>
 
-                <div class="links">
-                    <a href="/shopNow" class="btn btn-default">SHOP NOW</a>
-                    <a href="{{route('reservation.create')}}" class="btn btn-lg orangeBtn">BOOK A TABLE</a>
-                    <a href="/contacts" class="btn btn-default">CONTACTS</a>
+                    <div class="links">
+                        <a href="/shopNow" class="btn btn-default">SHOP NOW</a>
+                        <a href="{{route('reservation.create')}}" class="btn btn-lg orangeBtn">BOOK A TABLE</a>
+                        <a href="/contacts" class="btn btn-default">CONTACTS</a>
+                    </div>
                 </div>
             </div>
-        </div>
+        </header>
     </body>
 </html>
 

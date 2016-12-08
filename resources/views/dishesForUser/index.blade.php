@@ -5,7 +5,7 @@
 @include('partials.errors', ['errors'=>$errors])
 
 
-<a class="btn btn-primary" href="{{route('cart.index') }}"> Cart: <span class="badge">{{$cartCount}}</span> item(s)</a>
+<a class="btn btn-primary hidden-xs hidden-sm" href="{{route('cart.index') }}"> Cart: <span class="badge">{{$cartCount}}</span> item(s)</a>
 
 <div class="row text-center">
     @foreach($dishes as $dish)
