@@ -8,6 +8,10 @@
   }
 </style>
 
+<div class="bg-rez">
+    <img src="{{$url = asset('/images/Panna-Cotta1.jpg')}}">
+</div>
+
 <div class="container">
     <div class="row">
         <div class="col-md-6 panel-body text-justify">

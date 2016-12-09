@@ -10,22 +10,21 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Bungee+Shade|Finger+Paint|Fugaz+One|Knewave|Monoton|Montserrat+Subrayada|Open+Sans" rel="stylesheet">
 
         <!-- Styles -->
         <style>
             html, body,{
- /*               background: #cc99ff;
-                background: -webkit-linear-gradient(left top, #9966ff, #66ffff);
-                background: -o-linear-gradient(bottom right, #9966ff, #66ffff);
-                background: -moz-linear-gradient(bottom right, #9966ff, #66ffff);
-                background: linear-gradient(to bottom right, #9966ff, #66ffff);*/
                 color: white;
-                font-family: 'Raleway', sans-serif;
+                font-family: 'Open Sans' sans-serif;
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;
 
             }
+
+/*            font-family: 'Open Sans', sans-serif;
+            font-family: 'Fugaz One', cursive;*/
 
             header {
                 background-color: rgba(0, 0, 0, 0.4);
@@ -73,6 +72,7 @@
 
             .m-b-md {
                 margin-bottom: 30px;
+                font-family: 'Finger Paint';
 
             }
 

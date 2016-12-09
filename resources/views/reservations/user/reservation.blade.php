@@ -4,53 +4,11 @@
 
 @include('partials.errors', ['errors'=>$errors])
 
-
-<style type="text/css">
-    
-    .bg-rez {
-        background: url(#) no-repeat center center fixed; 
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-        z-index: -2;
-
-          /* Set rules to fill background */
-        min-height: 100%;
-        min-width: 1024px;
-            
-          /* Set up proportionate scaling */
-        width: 100%;
-        height: auto;
-            
-          /* Set up positioning */
-        position: fixed;
-        top: 0;
-        left: 0;
-    }
-
-    .bg {
-        background-color: rgba(0, 0, 0, 0.4);
-        z-index: -1;
-    }
-
-    @media screen and (max-width: 1024px) { /* Specific to this particular image */
-        img.bg {
-            left: 50%;
-            margin-left: -512px;   /* 50% */
-        }
-    }
-
-</style>
-
 <div class="bg-rez">
     <img src="{{$url = asset('/images/slide-index-04.jpg')}}">
-    
 </div>
 
-
-
-<div class="container">
+<div class="container ">
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
             <div class="panel panel-primary">

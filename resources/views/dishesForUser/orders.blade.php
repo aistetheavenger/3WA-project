@@ -2,15 +2,23 @@
 
 @section('content')
 
-@if (session('message'))
-    <div class="alert alert-warning">
-        {{session('message')}}  
-    </div>
-@endif
+
+<style type="text/css">
+    table {
+        background-color: black;
+        color: white;
+        margin-top: 20px;
+        
+    }
+</style>
+
+<div class="bg-rez">
+    <img src="{{$url = asset('/images/Panna-Cotta.jpeg')}}">
+</div>
 
 <div class="row">
     <div class="col-md-12"> 
-        <table class="table table-hover table-orders">
+        <table class="table table-condensed">
             <tr>
                 <th>User name</th>
                 <th>Date</th>

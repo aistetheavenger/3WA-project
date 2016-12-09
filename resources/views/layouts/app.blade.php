@@ -10,7 +10,6 @@
 
     <title>{{ config('', 'Apple Forest') }}</title>
 
-    
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
 
     <!-- Latest compiled and minified CSS -->
@@ -19,6 +18,8 @@
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Bungee+Shade|Finger+Paint|Fugaz+One|Knewave|Monoton|Montserrat+Subrayada|Open+Sans" rel="stylesheet">
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -38,14 +39,15 @@
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script>tinymce.init({ selector:'textarea' });</script>
 
-
     <style>
+
+        body, div{
+            font-family: 'Open Sans';
+        }
         .navbar {
-            background: #cc99ff;
-            background: -webkit-linear-gradient(left top, #9966ff, #66ffff);
-            background: -o-linear-gradient(bottom right, #9966ff, #66ffff);
-            background: -moz-linear-gradient(bottom right, #9966ff, #66ffff);
-            background: linear-gradient(to bottom right, #9966ff, #66ffff);
+            background: black;
+            border: transparent;
+
         }
 
         .navbar-brand img {
@@ -56,6 +58,11 @@
         }
 
         .navbar-default .navbar-brand {
+            color: white;
+            font-family: 'Finger Paint';
+            font-size: 2em;
+        }
+        .navbar-default .navbar-nav>li>a, .navbar-default .navbar-text {
             color: white;
         }
 

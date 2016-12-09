@@ -10,3 +10,4 @@
         <li><a href="{{ route('orders.index') }}">Orders history</a>
     </ul>
 </nav>
+

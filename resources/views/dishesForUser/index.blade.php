@@ -5,7 +5,10 @@
 @include('partials.errors', ['errors'=>$errors])
 
 
-<a class="btn btn-primary hidden-xs hidden-sm" href="{{route('cart.index') }}"> Cart: <span class="badge">{{$cartCount}}</span> item(s)</a>
+<div class="bg-rez">
+    <img src="{{$url = asset('/images/Panna-Cotta.jpeg')}}">
+</div>
+
 
 <div class="row text-center">
     @foreach($dishes as $dish)
